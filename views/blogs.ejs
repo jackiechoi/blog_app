@@ -1,0 +1,29 @@
+<%include partials/header%>
+
+
+
+<div class="container">
+	<header class="jumbotron">
+		<div class="container">
+			<h1>Welcome to Blog Entries</h1>
+			<p>Feel free to browse, mark your favorite blogs and leave comments!</p>
+			<p>
+				<a class="btn btn-primary btn-large" href="/blogs/new">Add New Blog Entry</a>
+			</p>
+		</div>	
+	</header>
+	
+	<div class="row text-center" style="display:flex; flex-wrap: wrap">
+		<%blogs.forEach(function(eachBlog){%>
+			<div class="col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="<%=eachBlog.image%>">
+					<div class="caption">
+						<h4><%=eachBlog.title%></h4>
+					</div>
+				</div>
+			</div>
+		<%});%>
+	</div>
+</div>
+<%include partials/footer%>
