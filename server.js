@@ -4,7 +4,7 @@ var express = require('express'),
 		mongoose = require('mongoose'),
 		Blog = require('./models/blog'),
 		Comment = require('./models/comment'),
-		seedDB = require('./seeds');
+		seedDB = require('./seeds'),
 
 mongoose.connect("mongodb://localhost/medium_app");
 app.set('view engine', 'ejs')
