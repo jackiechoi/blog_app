@@ -1,6 +1,8 @@
 # medium_app
 Blogging app with comment/mark functionality
 
+Web link: https://jackie-blog-app.herokuapp.com/blogs
+
 RESTFUL ROUTES
 
 INDEX = {path: /blogs, Http verb: GET, Purpose: Display a list of all blogs}
