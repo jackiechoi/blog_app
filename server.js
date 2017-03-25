@@ -10,7 +10,7 @@ var connectionString = mongoose.connect("mongodb://jackiechoi:1111@ds135820.mlab
 //mongoose.connect("mongodb://localhost/medium_app");
 app.set('view engine', 'ejs')
 app.set('view cache', false);
-seedDB();
+//seedDB();
 
 // Body parser for forms
 var bodyParser= require('body-parser')
@@ -105,6 +105,6 @@ app.post('/blogs/:id/comments', function(req, res){
 
 
 
-app.listen(process.env.PORT || 3001, function(){
+app.listen(process.env.PORT || '3001', function(){
 	console.log('Medium app working!')
 })
