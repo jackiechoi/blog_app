@@ -6,11 +6,10 @@ var express = require('express'),
 		Comment = require('./models/comment'),
 		seedDB = require('./seeds');
 
-seedDB();
-// Set view engine folder
 mongoose.connect("mongodb://localhost/medium_app");
 app.set('view engine', 'ejs')
 app.set('view cache', false);
+seedDB();
 
 // Body parser for forms
 var bodyParser= require('body-parser')
@@ -27,7 +26,7 @@ app.get('/blogs', function(req, res){
 		if(err){
 			res.redirect('/err');
 		}else{
-			res.render('index', {blogs:allBlogs});
+			res.render('blogs/index', {blogs:allBlogs});
 		}
 	})
 })
@@ -49,9 +48,9 @@ app.post('/blogs', function(req, res){
 		}
 	})
 })
-// NEW - show form to create new blog
+// NEW 
 app.get('/blogs/new', function(req, res){
-	res.render('new')
+	res.render('blogs/new')
 })
 // SHOW
 app.get('/blogs/:id', function(req, res){
@@ -62,10 +61,46 @@ app.get('/blogs/:id', function(req, res){
 			res.redirect("/err");
 		} else {
 			
-			res.render("show", {blog: foundBlog});
+			res.render("blogs/show", {blog: foundBlog});
 		}	
 	});
 })	
+
+// ======== COMMENTS ROUTES ==================
+app.get('/blogs/:id/comments/new', function(req, res){
+	Blog.findById(req.params.id, function(err, foundBlog){
+		if(err){
+			console.log(err);
+			res.redirect('err')
+		} else{
+			res.render('comments/new', {blog: foundBlog});
+		}
+	})
+	
+})
+app.post('/blogs/:id/comments', function(req, res){
+	//lookup blog using id, create new comment, connect new comment to blog
+	//redirect blog show page
+	Blog.findById(req.params.id, function(err, foundBlog){
+		if(err){
+			console.log(err);
+			res.redirect('err');
+		} else{
+			Comment.create(req.body.comment, function(err, newComment){
+				if(err){
+					console.log(err);
+					res.redirect('err');
+				}else{
+					foundBlog.comments.push(newComment);
+					foundBlog.save();
+					res.redirect("/blogs/"+foundBlog._id);
+				}
+			})
+		}
+	})
+
+})
+
 
 
 app.listen(3001, function(){
