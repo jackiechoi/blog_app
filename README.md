@@ -1,11 +1,18 @@
+# medium_app
+Blogging app with comment/mark functionality
+
+Web link: https://payment-app-home.herokuapp.com
+
 RESTFUL ROUTES
 
-name 			 url												verb		desc.
-=====================================================================================
-INDEX     /blogs				 							GET			Display a list of all blogs
-NEW				/blogs/new 									GET			Displays form to make a new blog
-CREATE		/blogs 											POST		Add new blog to DB
-SHOW 			/blogs/:id 									GET 		Show info about one blog
+INDEX = {path: /blogs, Http verb: GET, Purpose: Display a list of all blogs}
 
-NEW 			/blogs/:id/comments/new 		GET
-CREATE		/blogs/:id/comments					POST
+NEW = {path: /blogs/new, Http verb: GET, Purpose: Displays form to make a new blog}
+
+CREATE = {path: /blogs, Http verb: POST, Purpose: create a new blog and save to DB}
+
+SHOW = {path: /blogs/:id, Http verb: GET, Purpose: Show info about one specific blog}
+
+NEW = {path: /blogs/:id/comments/new, Http verb: GET, Purpose: Displays form to make a new comment}
+
+CREATE = {path: /blogs/:id/comments, Http verb: POST, Purpose: create a new comment and save to DB}
