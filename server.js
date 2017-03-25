@@ -4,13 +4,13 @@ var express = require('express'),
 		mongoose = require('mongoose'),
 		Blog = require('./models/blog'),
 		Comment = require('./models/comment'),
-		seedDB = require('./seeds'),
+		seedDB = require('./seeds');
 
-var connectionString = mongoose.connect("mongodb://jackiechoi:1111@ds135820.mlab.com:35820/blog_db"); 
-//mongoose.connect("mongodb://localhost/medium_app");
+//var connectionString = mongoose.connect("mongodb://jackiechoi:1111@ds135820.mlab.com:35820/blog_db"); 
+mongoose.connect("mongodb://localhost/medium_app");
 app.set('view engine', 'ejs')
 app.set('view cache', false);
-//seedDB();
+seedDB();
 
 // Body parser for forms
 var bodyParser= require('body-parser')
