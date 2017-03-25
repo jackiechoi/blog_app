@@ -15,7 +15,8 @@ seedDB();
 var bodyParser= require('body-parser')
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
-app.use("/public", express.static("public"))
+//__dirname is the directory this script lives in
+app.use(express.static(__dirname + "/public"))
 
 //INDEX ROUTE
 app.get('/', function(req, res){
