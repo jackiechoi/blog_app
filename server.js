@@ -55,11 +55,13 @@ app.get('/blogs/new', function(req, res){
 })
 // SHOW
 app.get('/blogs/:id', function(req, res){
-		Blog.findById(req.params.id, function(err, foundBlog){
+		Blog.findById(req.params.id).populate("comments").exec( 
+		function(err, foundBlog){
 		if (err) {
 			console.log(err);
 			res.redirect("/err");
 		} else {
+			
 			res.render("show", {blog: foundBlog});
 		}	
 	});
