@@ -1,8 +1,6 @@
 # medium_app
 Blogging app with comment/mark functionality
 
-Web link: https://payment-app-home.herokuapp.com
-
 RESTFUL ROUTES
 
 INDEX = {path: /blogs, Http verb: GET, Purpose: Display a list of all blogs}

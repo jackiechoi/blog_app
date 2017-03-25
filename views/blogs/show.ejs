@@ -22,16 +22,49 @@
 			<div class="well">
 				<div class="text-right">
 					<a class="btn btn-success" href="/blogs/<%=blog._id%>/comments/new">Add new comment</a>
-						<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Heart</button>
+
+					<a id="bookmark-this" href="#" title="Bookmark This Page"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button></a>
+
+					<script type="text/javascript">
+						jQuery(function($) {
+					  $('#bookmark-this').click(function(e) {
+					    var bookmarkURL = window.location.href;
+					    var bookmarkTitle = document.title;
+
+					    if ('addToHomescreen' in window && addToHomescreen.isCompatible) {
+					      // Mobile browsers
+					      addToHomescreen({ autostart: false, startDelay: 0 }).show(true);
+					    } else if (window.sidebar && window.sidebar.addPanel) {
+					      // Firefox <=22
+					      window.sidebar.addPanel(bookmarkTitle, bookmarkURL, '');
+					    } else if ((window.sidebar && /Firefox/i.test(navigator.userAgent)) || (window.opera && window.print)) {
+					      // Firefox 23+ and Opera <=14
+					      $(this).attr({
+					        href: bookmarkURL,
+					        title: bookmarkTitle,
+					        rel: 'sidebar'
+					      }).off(e);
+					      return true;
+					    } else if (window.external && ('AddFavorite' in window.external)) {
+					      // IE Favorites
+					      window.external.AddFavorite(bookmarkURL, bookmarkTitle);
+					    } else {
+					      // Other browsers (mainly WebKit & Blink - Safari, Chrome, Opera 15+)
+					      alert('Press ' + (/Mac/i.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to bookmark this page.');
+					    }
+
+					    return false;
+					  });
+					});
+					</script>
+
 				</div>
-
-
 				<hr>
 				<%blog.comments.forEach(function(comment){%>
 					<div class="row">
 						<div class="col-md-12">
 							<strong><%=comment.author%></strong>
-							<span class="pull-right">10 days ago</span>
+							<span class="pull-right">5 days ago</span>
 							<p>
 								<%=comment.text%>
 							</p>

@@ -4,13 +4,15 @@ var express = require('express'),
 		mongoose = require('mongoose'),
 		Blog = require('./models/blog'),
 		Comment = require('./models/comment'),
-		seedDB = require('./seeds');
+		Blog = require('./models/blog'),
+		Comment = require('./models/comment');
+		//seedDB = require('./seeds');
 
-//var connectionString = mongoose.connect("mongodb://jackiechoi:1111@ds135820.mlab.com:35820/blog_db"); 
-mongoose.connect("mongodb://localhost/medium_app");
+var connectionString = mongoose.connect("mongodb://jackiechoi:1111@ds135820.mlab.com:35820/blog_db"); 
+//mongoose.connect("mongodb://localhost/medium_app");
 app.set('view engine', 'ejs')
 app.set('view cache', false);
-seedDB();
+//seedDB();
 
 // Body parser for forms
 var bodyParser= require('body-parser')
@@ -21,7 +23,7 @@ app.use(express.static(__dirname + "/public"))
 
 //INDEX ROUTE
 app.get('/', function(req, res){
-	res.render('landing')
+	res.redirect('/blogs')
 })
 app.get('/blogs', function(req, res){
 	Blog.find({}, function(err, allBlogs){
@@ -62,7 +64,6 @@ app.get('/blogs/:id', function(req, res){
 			console.log(err);
 			res.redirect("/err");
 		} else {
-			
 			res.render("blogs/show", {blog: foundBlog});
 		}	
 	});
@@ -102,8 +103,6 @@ app.post('/blogs/:id/comments', function(req, res){
 	})
 
 })
-
-
 
 app.listen(process.env.PORT || '3001', function(){
 	console.log('Medium app working!')
