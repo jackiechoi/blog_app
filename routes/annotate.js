@@ -1,8 +1,9 @@
 var express = require('express'),
-		app = express(),
+		router = express.Router(),
+		Blog = require('../models/blog'),
+		Comment = require('../models/comment'),
 		annotator = require('annotator'),
-		bodyParser = require('body-parser'),
-		methodOverride = require("method-override");
+		passport = require('passport');	
 
 //https://blog.yipl.com.np/annotating-content-with-annotatorjs-in-webpages-2dbcaebbdf29#.25v1gyqo7
 
@@ -12,8 +13,6 @@ ann
 .then(function () {
      ann.annotations.load();
 });
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(methodOverride("_method"));
 
 /*
 // LOAD ANNOTATIONS
@@ -69,3 +68,5 @@ app.delete('/annotation/delete/:id}', function(req, res){
     return response()->json(['status' => 'error']);
 })
 */
+
+module.exports = router;
