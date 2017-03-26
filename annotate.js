@@ -15,7 +15,7 @@ ann
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 
-
+/*
 // LOAD ANNOTATIONS
 app.get('/annotation/search', function(req, res){
 	// $annotations = Annotation:where('page_id', $request->get('page'))->get();
@@ -25,7 +25,7 @@ app.get('/annotation/search', function(req, res){
 
 })
 
-/*
+
 // STORE
 app.post('/annotation/store', function(req, res){
 	$data = json_decode($request->getContent(), true);
