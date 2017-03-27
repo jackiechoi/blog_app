@@ -4,8 +4,8 @@ var express = require('express'),
 		mongoose = require('mongoose'),
 		methodOverride = require('method-override'),
 		bodyParser = require('body-parser'),
-		Blog = require('./models/blog'),
-		Comment = require('./models/comment'),
+		//Blog = require('./models/blog'),
+		//Comment = require('./models/comment'),
 		passport = require('passport'),
 		LocalStratey = require('passport-local'),
 		passportLocalMongoose = require('passport-local-mongoose');
@@ -13,7 +13,7 @@ var express = require('express'),
 
 // REQUIRE ROUTES
 var commentRoutes = require('./routes/comment'),
-		indexRoutes = require('./routes/index');
+		blogRoutes = require('./routes/blog');
 		annotateRoutes = require('./routes/annotate');
 
 // APP CONFIG
@@ -48,7 +48,7 @@ app.use(function(req, res, next){
 	next();
 })
 app.use(commentRoutes);
-app.use(indexRoutes);
+app.use(blogRoutes);
 app.use(annotateRoutes);
 
 

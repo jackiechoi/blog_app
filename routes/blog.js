@@ -4,10 +4,11 @@ var express = require('express'),
 		Comment = require('../models/comment'),
 		passport = require('passport');	
 
-//INDEX ROUTE
+// INDEX ROUTE
 router.get('/', function(req, res){
 	res.redirect('/blogs')
 })
+// READ ROUTE
 router.get('/blogs', function(req, res){
 	Blog.find({}, function(err, allBlogs){
 		if(err){
@@ -23,10 +24,7 @@ router.get("/err", function(req, res){
 })
 // CREATE ROUTE
 router.post('/blogs', function(req, res){
-	var title = req.body.title;
-	var image = req.body.image;
-	var body = req.body.body;
-	var newBlog = {title: title, image: image, body: body}
+	var newBlog = {title: req.body.title, image: req.body.image, body: req.body.body};
 	Blog.create(newBlog, function(err, newlyCreated){
 		if(err){
 			res.redirect('/err');
@@ -35,7 +33,7 @@ router.post('/blogs', function(req, res){
 		}
 	})
 })
-// NEW 
+// NEW FORM
 router.get('/blogs/new', function(req, res){
 	res.render('blogs/new')
 })
