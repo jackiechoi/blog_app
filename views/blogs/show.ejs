@@ -48,7 +48,7 @@
 				</div>
 				<hr>
 				<%blog.comments.forEach(function(comment){%>
-					<div class="row">
+					<div id="comment" class="row">
 						<div class="col-md-12">
 							<strong><%=comment.author%></strong>
 							<span class="pull-right"><%=comment.date.toLocaleDateString('en-US')%><br>
