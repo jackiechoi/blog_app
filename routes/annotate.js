@@ -30,19 +30,18 @@ router.get('/annotation/annotations', (req, res) => {
     })
 })
 
-/* UPDATE: UPDATE ANNOTATIONS
+//UPDATE: UPDATE ANNOTATIONS
 router.put('/annotation/update/:id', (req, res) => {
-    //retrieve the updated data from req.body and save it to annotations array with the correct id
-  Annotation[req.params.id] = req.body
-    //return the updated/saved annotation in json format
-  res.json({id: req.body.id})
+  //res.json({id: req.body.id})
 
-  Annotation.findByIdAndUpdate(req.params.id, req.body.foundAnnt, function(err, updatedAnnt){
-      if(){
-
+  Annotation.findByIdAndUpdate(req.params.id, req.body, function(err, updatedAnnt){
+      if(err){
+        console.log(err);
+      } else{
+        res.json({id: updatedAnnt._id});
       }
     })
-})*/
+})
 
 // DESTROY: DELETE ANNOTATIONS
 router.delete('/annotation/delete/:id', (req, res) => {

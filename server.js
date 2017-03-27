@@ -4,17 +4,17 @@ var express = require('express'),
 		mongoose = require('mongoose'),
 		methodOverride = require('method-override'),
 		bodyParser = require('body-parser'),
-		//Blog = require('./models/blog'),
-		//Comment = require('./models/comment'),
 		passport = require('passport'),
 		LocalStratey = require('passport-local'),
 		passportLocalMongoose = require('passport-local-mongoose');
-		//seedDB = require('./seeds');
 
 // REQUIRE ROUTES
 var commentRoutes = require('./routes/comment'),
 		blogRoutes = require('./routes/blog');
 		annotateRoutes = require('./routes/annotate');
+app.use(commentRoutes);
+app.use(blogRoutes);
+app.use(annotateRoutes);
 
 // APP CONFIG
 var connectionString = mongoose.connect("mongodb://jackiechoi:1111@ds135820.mlab.com:35820/blog_db"); 
@@ -47,10 +47,6 @@ app.use(function(req, res, next){
 	res.locals.currentUser = req.user;
 	next();
 })
-app.use(commentRoutes);
-app.use(blogRoutes);
-app.use(annotateRoutes);
-
 
 app.listen(process.env.PORT || '3001', function(){
 	console.log('Medium app working!')
