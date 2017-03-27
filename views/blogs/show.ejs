@@ -1,4 +1,4 @@
-<%include ../partials/header%>
+	<%include ../partials/header%>
 
 <div class="container">
 	<div class="row">
@@ -22,16 +22,15 @@
 
 			<script>
 			 $(function(){
+			 		console.log(window.location.pathname)
 				  var annotation = $('#content').annotator();
 				 
 				  annotation.annotator('addPlugin', 'Store', {
 				    prefix: '/annotation',
-				    loadFromSearch : {
-				        page : current_page_id
-				    },
-				    annotationData : {
-				        page : current_page_id
-				    },
+				    annotationData: {
+        			'uri': 'http://localhost:3001' + window.location.pathname,
+        			page: window.location.pathname
+      			},
 				    urls: {
 				        create:  '/store',
 				        update:  '/update/:id',

@@ -1,12 +1,33 @@
 var express = require('express'),
-		router = express.Router(),
-		Blog = require('../models/blog'),
-		Comment = require('../models/comment'),
-		annotator = require('annotator'),
-		passport = require('passport');	
+	router = express.Router();
+	//Blog = require('../models/blog'),
+	//Comment = require('../models/comment'),
+	//annotator = require('annotator'),
+    //passport = require('passport');	
+
+const annotations = []
+
+// LOAD ANNOTATIONS
+router.get("/annotation/annotations", (req, res) => {
+    const reqOrigin = req.headers.referer
+    const pageAnnotations = annotations.filter( (ele) => ele.uri === reqOrigin )
+    res.json(pageAnnotations)
+})
+
+// STORE ANNOTATIONS
+router.post("/annotation/store", (req, res) => {
+    console.log(req.body)
+    const ID = annotations.length
+    req.body.id = ID
+    annotations.push(req.body)
+    res.json({id: ID})
+})
+
+// UPDATE ANNOTATIONS
 
 //https://blog.yipl.com.np/annotating-content-with-annotatorjs-in-webpages-2dbcaebbdf29#.25v1gyqo7
 
+/*
 var ann = new annotator.App();
 ann
 .start()
@@ -14,33 +35,6 @@ ann
      ann.annotations.load();
 });
 
-/*
-// LOAD ANNOTATIONS
-app.get('/annotation/search', function(req, res){
-	// $annotations = Annotation:where('page_id', $request->get('page'))->get();
-
- //    return response()->json(['total' => count($annotations), 'rows' => $annotations]);
- res.send('annotations!')
-
-})
-
-
-// STORE
-app.post('/annotation/store', function(req, res){
-	$data = json_decode($request->getContent(), true);
-    $annotation = [
-        'ranges' => $data['ranges'],
-        'quote'  => $data['quote'],
-        'text'   => $data['text'],
-        'page_id'   => $request->get('page')
-    ];
-
-    if($id = Annotation::create($annotation)) {
-        return response()->json(['status' => 'success', 'id' => $id]);
-    } else {
-        return response()->json(['status' => 'error']);
-    }
-})
 
 //UPDATE
 app.put('/annotation/update/:id', function(req, res){
