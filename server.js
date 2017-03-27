@@ -31,6 +31,7 @@ app.use(require('express-session')({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
+
 /*
 //setting up middleware called authenticate
 passport.use(new LocalStratey(User.authenticate())); 
@@ -39,6 +40,7 @@ passport.use(new LocalStratey(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 */
+
 //creating my own middleware: passing currentUser: req.user to every single handler by calling this function for every route
 app.use(function(req, res, next){
 	res.locals.currentUser = req.user;
