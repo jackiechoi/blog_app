@@ -1,20 +1,15 @@
 var express = require('express'),
-	router = express.Router();
-	//Blog = require('../models/blog'),
-	//Comment = require('../models/comment'),
-	//annotator = require('annotator'),
-    //passport = require('passport');	
+	router = express.Router(),
+    //Annotation = require('../models/annotate'),
+    passport = require('passport');	
 
-const annotations = []
-
-mongose Schema
-
+const Annotation = []
 
 // CREATE: STORE ANNOTATIONS
 router.post('/annotation/store', (req, res) => {
     //Pass annotations.length to req.body.id
-    req.body.id = annotations.length;
-    annotations.push(req.body)
+    req.body.id = Annotation.length;
+    Annotation.push(req.body)
     //return the id in json format
     res.json({id: req.body.id})
 })
@@ -23,7 +18,7 @@ router.post('/annotation/store', (req, res) => {
 router.get('/annotation/annotations', (req, res) => {
     const reqOrigin = req.headers.referer;
     //filter through elements of annotations array and when its uri equals request origin url, we store it to pageAnnotations
-    const pageAnnotations = annotations.filter( (ele) => ele.uri === reqOrigin );
+    const pageAnnotations = Annotation.filter( (ele) => ele.uri === reqOrigin );
     //return the saved annotation in json format
     res.json(pageAnnotations);
 })
@@ -31,7 +26,7 @@ router.get('/annotation/annotations', (req, res) => {
 // UPDATE: UPDATE ANNOTATIONS
 router.put('/annotation/update/:id', (req, res) => {
     //retrieve the updated data from req.body and save it to annotations array with the correct id
-    annotations[req.params.id] = req.body
+    Annotation[req.params.id] = req.body
     //return the updated/saved annotation in json format
     res.json({id: req.body.id})
 })
@@ -39,7 +34,7 @@ router.put('/annotation/update/:id', (req, res) => {
 // DESTROY: DELETE ANNOTATIONS
 router.delete('/annotation/delete/:id', (req, res) => {
     //retrieve the data from req.body and delete it from the annotation array with the id
-    annotations[req.body.id] = [];
+    Annotation[req.body.id] = [];
     res.json({id: req.body.id})
 })
 
