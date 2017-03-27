@@ -21,7 +21,7 @@ router.get('/annotation/annotations', (req, res) => {
       if(err) {
         console.log(err);
       }else{
-        //if no error, list allAnnotations by way of its ids which are mongoose._id
+        //if no error, list allAnnotations by way of its ._id
         for ( let ele of allAnnotations) {
           ele._doc.id = ele._id
         }
@@ -32,8 +32,6 @@ router.get('/annotation/annotations', (req, res) => {
 
 //UPDATE: UPDATE ANNOTATIONS
 router.put('/annotation/update/:id', (req, res) => {
-  //res.json({id: req.body.id})
-
   Annotation.findByIdAndUpdate(req.params.id, req.body, function(err, updatedAnnt){
       if(err){
         console.log(err);
