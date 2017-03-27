@@ -39,12 +39,14 @@
 				    }
 				  });
 				});
+			 	$(function () {
+  				$('[data-toggle="tooltip"]').tooltip()
+				})
 			</script>
 
 			<div class="well">
 				<div class="text-right">
 					<a class="btn btn-success" href="/blogs/<%=blog._id%>/comments/new">Add new comment</a>
-					<!-- <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button> -->
 				</div>
 				<hr>
 				<%blog.comments.forEach(function(comment){%>
@@ -53,7 +55,7 @@
 							<strong><%=comment.author%></strong>
 							<span class="pull-right"><%=comment.date.toLocaleDateString('en-US')%><br>
 								2 likes
-								<span name="like" class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+								<a href="#" name="like" data-toggle="tooltip" data-placement="top" title="Like" class="glyphicon glyphicon-heart" aria-hidden="true"></a>
 							</span>
 							<img id="commentImage" class="img-responsive" src="<%=comment.image%>" >
 							<p>
