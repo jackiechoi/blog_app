@@ -7,6 +7,9 @@ var express = require('express'),
 
 const annotations = []
 
+mongose Schema
+
+
 // CREATE: STORE ANNOTATIONS
 router.post('/annotation/store', (req, res) => {
     //Pass annotations.length to req.body.id
@@ -35,8 +38,9 @@ router.put('/annotation/update/:id', (req, res) => {
 
 // DESTROY: DELETE ANNOTATIONS
 router.delete('/annotation/delete/:id', (req, res) => {
-    //res.redirect('/annotation/annotations');
-    res.send('delete path working!')
+    //retrieve the data from req.body and delete it from the annotation array with the id
+    annotations[req.body.id] = [];
+    res.json({id: req.body.id})
 })
 
 module.exports = router;
