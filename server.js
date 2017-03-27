@@ -52,8 +52,6 @@ app.use(indexRoutes);
 app.use(annotateRoutes);
 
 
-
-
 app.listen(process.env.PORT || '3001', function(){
 	console.log('Medium app working!')
 })

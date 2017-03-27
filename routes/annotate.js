@@ -9,17 +9,22 @@ const annotations = []
 
 // LOAD ANNOTATIONS
 router.get("/annotation/annotations", (req, res) => {
-    const reqOrigin = req.headers.referer
-    const pageAnnotations = annotations.filter( (ele) => ele.uri === reqOrigin )
+    const reqOrigin = req.headers.referer;
+    //filter through elements of annotations array and when its uri equals request origin url, we store it to pageAnnotations
+    const pageAnnotations = annotations.filter( (ele) => ele.uri === reqOrigin );
+    //return the saved annotation in json format
     res.json(pageAnnotations)
 })
 
 // STORE ANNOTATIONS
 router.post("/annotation/store", (req, res) => {
-    console.log(req.body)
-    const ID = annotations.length
+    console.log("req.params: ", req.params)
+    console.log("Stored annotations: ", annotations);
+    //pass annotations.length to req.body.id
+    const ID = annotations.length;
     req.body.id = ID
     annotations.push(req.body)
+    //return the id in json format
     res.json({id: ID})
 })
 
