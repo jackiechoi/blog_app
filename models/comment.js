@@ -4,7 +4,7 @@ var commentSchema = mongoose.Schema({
 	text: String,
 	author: String,
 	image: String,
-	like: String,
+	like: {type: Number, default: 0},
 	date: {type: Date, default: Date.now}
 })
 

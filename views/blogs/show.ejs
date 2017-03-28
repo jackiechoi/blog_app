@@ -39,9 +39,12 @@
 				    }
 				  });
 				});
-			 	$(function () {
-  				$('[data-toggle="tooltip"]').tooltip()
-				})
+
+			 function countLike(name){
+					$.post("/like", {commentId: name})
+					alert('Liked!')
+					location.reload();
+				}
 			</script>
 
 			<div class="well">
@@ -54,8 +57,9 @@
 						<div class="col-md-12">
 							<strong><%=comment.author%></strong>
 							<span class="pull-right"><%=comment.date.toLocaleDateString('en-US')%><br>
-								<!-- <%=comment.likes%> likes
-								<a href="#" name="like" data-toggle="tooltip" data-placement="top" title="Like" class="glyphicon glyphicon-heart" aria-hidden="true"></a> -->
+								<br>
+								<%=comment.likes%>  likes
+								<button type="submit" name="<%=comment._id%>" onclick="countLike(this.name)" class="glyphicon glyphicon-heart" aria-hidden="true"></button>
 							</span>
 							<img id="commentImage" class="img-responsive" src="<%=comment.image%>">
 							<p>
