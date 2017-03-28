@@ -56,10 +56,11 @@
 					<div id="comment" class="row">
 						<div class="col-md-12">
 							<strong><%=comment.author%></strong>
-							<span class="pull-right"><%=comment.date.toLocaleDateString('en-US')%><br>
-								<br>
+							<span class="pull-right">
 								<%=comment.likes%>  likes
 								<button type="submit" name="<%=comment._id%>" onclick="countLike(this.name)" class="glyphicon glyphicon-heart" aria-hidden="true"></button>
+								<br>
+								<%=comment.date.toLocaleDateString('en-US')%>
 							</span>
 							<img id="commentImage" class="img-responsive" src="<%=comment.image%>">
 							<p>
