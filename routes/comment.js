@@ -14,11 +14,8 @@ router.get('/blogs/:id/comments/new', function(req, res){
 			res.render('comments/new', {blog: foundBlog});
 		}
 	})
-	
 })
 router.post('/blogs/:id/comments', function(req, res){
-	//lookup blog using id, create new comment, connect new comment to blog
-	//redirect blog show page
 	Blog.findById(req.params.id, function(err, foundBlog){
 		if(err){
 			console.log(err);

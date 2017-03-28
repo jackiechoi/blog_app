@@ -54,10 +54,10 @@
 						<div class="col-md-12">
 							<strong><%=comment.author%></strong>
 							<span class="pull-right"><%=comment.date.toLocaleDateString('en-US')%><br>
-								2 likes
-								<a href="#" name="like" data-toggle="tooltip" data-placement="top" title="Like" class="glyphicon glyphicon-heart" aria-hidden="true"></a>
+								<!-- <%=comment.likes%> likes
+								<a href="#" name="like" data-toggle="tooltip" data-placement="top" title="Like" class="glyphicon glyphicon-heart" aria-hidden="true"></a> -->
 							</span>
-							<img id="commentImage" class="img-responsive" src="<%=comment.image%>" >
+							<img id="commentImage" class="img-responsive" src="<%=comment.image%>">
 							<p>
 								<%=comment.text%>
 							</p>
