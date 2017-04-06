@@ -1,11 +1,13 @@
 var express = require('express'),
 		app = express(),
+		port = process.env.PORT || 3001,
 		bodyParser = require('body-parser'),
 		mongoose = require('mongoose'),
 		methodOverride = require('method-override'),
 		bodyParser = require('body-parser'),
 		passport = require('passport'),
 		LocalStratey = require('passport-local'),
+		cookieParser = require('cookie-parser'),
 		passportLocalMongoose = require('passport-local-mongoose');
 
 // REQUIRE ROUTES
@@ -39,13 +41,13 @@ app.use(function(req, res, next){
 	res.locals.currentUser = req.user;
 	next();
 })
+
 app.use(commentRoutes);
 app.use(blogRoutes);
 app.use(annotateRoutes);
 app.use(likeRoutes);
 app.use(chatRoutes);
 
-
-app.listen(process.env.PORT || '3001', function(){
+app.listen(port, function(){
 	console.log('Blog app working!')
 })

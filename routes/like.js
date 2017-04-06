@@ -1,8 +1,8 @@
 var express = require('express'),
-		router = express.Router(),
-		Comment = require('../models/comment'),
-		Blog = require('../models/blog'),
-		passport = require('passport');	
+    router = express.Router(),
+	  Comment = require('../models/comment'),
+    Blog = require('../models/blog'),
+	  passport = require('passport');	
 
  router.post('/like', function (req, res) {
     Comment.findById(req.body.commentId, function(err, foundComment){
