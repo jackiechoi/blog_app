@@ -8,14 +8,16 @@ var express = require('express'),
 		passport = require('passport'),
 		LocalStratey = require('passport-local'),
 		cookieParser = require('cookie-parser'),
+		// server = require('http').createServer(app),
+  //   io = require('socket.io')(server),
 		passportLocalMongoose = require('passport-local-mongoose');
 
 // REQUIRE ROUTES
 var commentRoutes = require('./routes/comment'),
 		blogRoutes = require('./routes/blog'),
 		annotateRoutes = require('./routes/annotate'),
-		likeRoutes = require('./routes/like'),
-		chatRoutes = require('./routes/chat');
+		likeRoutes = require('./routes/like');
+		//chatRoutes = require('./routes/chat')(io);
 
 // APP CONFIG
 var connectionString = mongoose.connect("mongodb://jackiechoi:1111@ds135820.mlab.com:35820/blog_db"); 
@@ -26,6 +28,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(express.static(__dirname + "/public"))
 app.use(methodOverride("_method"))
+app.use(cookieParser())
 
 // PASSPORT CONFIG
 app.use(require('express-session')({
@@ -46,7 +49,7 @@ app.use(commentRoutes);
 app.use(blogRoutes);
 app.use(annotateRoutes);
 app.use(likeRoutes);
-app.use(chatRoutes);
+//app.use(chatRoutes);
 
 app.listen(port, function(){
 	console.log('Blog app working!')
