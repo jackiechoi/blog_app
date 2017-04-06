@@ -13,3 +13,9 @@
 #comment {
 	margin-top: 3px;
 }
+.chat_body {
+	font: 13px "Trebuchet MS", sans-serif;
+}
+.chat {
+	max-width: 300px;
+}

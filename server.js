@@ -12,7 +12,8 @@ var express = require('express'),
 var commentRoutes = require('./routes/comment'),
 		blogRoutes = require('./routes/blog'),
 		annotateRoutes = require('./routes/annotate'),
-		likeRoutes = require('./routes/like');
+		likeRoutes = require('./routes/like'),
+		chatRoutes = require('./routes/chat');
 
 // APP CONFIG
 var connectionString = mongoose.connect("mongodb://jackiechoi:1111@ds135820.mlab.com:35820/blog_db"); 
@@ -42,8 +43,9 @@ app.use(commentRoutes);
 app.use(blogRoutes);
 app.use(annotateRoutes);
 app.use(likeRoutes);
+app.use(chatRoutes);
 
 
 app.listen(process.env.PORT || '3001', function(){
-	console.log('Medium app working!')
+	console.log('Blog app working!')
 })
