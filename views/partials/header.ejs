@@ -1,6 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+  <script type="text/javascript">
+        (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode banner closeBanner creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode".split(" "), 0);
+
+        branch.init('Ykey_live_ceuB4pObor3wq1wTBhZUmjkpvugz1swD');
+            function linkSMS(form) {
+                var phone = form.phone.value;
+                var linkData = {
+                    tags: [],
+                    channel: 'Website',
+                    feature: 'TextMeTheApp',
+                    data: {
+                        'foo': 'bar'
+                    }
+                };
+                var options = {};
+                var callback = function(err, result) {
+                    if (err) {
+                        alert("Sorry, something went wrong.");
+                    }
+                    else {
+                        alert("SMS sent!");
+                    }
+                };
+                branch.sendSMS(phone, linkData, options, callback);
+                form.phone.value = "";
+            }
+    </script> 
 	<title>JC Blog App</title>
 	
 <script type="text/javascript" src="https://zingtree.com/js/iframeResizerSmart.js"></script>
@@ -11,50 +39,18 @@
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/css/annotator.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/font-awesome.css">
-<script type="text/javascript">
 
-		// Branch import
-    	(function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode banner closeBanner creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode".split(" "), 0);
-
-	
-    	// Branch init
-    	branch.init('key_live_ceuB4pObor3wq1wTBhZUmjkpvugz1swD');
-
-    
-    function linkSMS(form) {
-      var phoneNumber = form.phone.text;
-      console.log("phoneNumber", phoneNumber)
-      var linkData = { 
-                    tags: [],
-                    channel: 'Website',
-                    feature: 'TextMeTheApp',
-                    data: {
-                        'foo': 'bar'
-                    }
-      };
-    
-      var callback = function(err, result) {
-                    if (err) {
-                        alert("Sorry, something went wrong.");
-                    }
-                    else {
-                        alert("SMS sent!");
-                    }
-                };
-      branch.sendSMS(phoneNumber, linkData, callback);
-      form.phone.value = " ";
-   }
-   </script>
 
 
 </head>
 <body>
 		<div>
-		 	**Send SMS
-        	<form onsubmit= "linkSMS(this)">
-            	Phone: <input id="phone" name="phone" type="text" />
-            	<input type="submit" value="Send" />
-        	</form>
+		 Send SMS
+        <form onsubmit="linkSMS(this); return false;">
+            <input id="phone" name="phone" type="tel" placeholder="(650) 123-4567" />
+            <br/>
+            <input type="submit"/>
+        </form>
         </div>
 
 		<nav class="navbar navbar-default">
