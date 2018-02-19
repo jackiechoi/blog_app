@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-    "node": "6.9.4"
+    "node": "8.9.1"
   },
   "author": "Jackie Choi",
   "license": "ISC",
