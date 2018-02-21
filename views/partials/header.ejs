@@ -3,36 +3,69 @@
 <head>
 
   <script type="text/javascript">
+
+        // Branch import
         (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode banner closeBanner creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode".split(" "), 0);
 
-        branch.init('key_live_ceuB4pObor3wq1wTBhZUmjkpvugz1swD');
-            function linkSMS(form) {
-                var phone = form.phone.value;
-                var linkData = {
-                    tags: [],
-                    channel: 'Website',
-                    feature: 'TextMeTheApp',
-                    data: {
-                        'foo': 'bar'
-                    }
-                };
-                var options = {};
-                var callback = function(err, result) {
-                    if (err) {
-                        alert("Sorry, something went wrong.");
-                    }
-                    else {
-                        alert("SMS sent!");
-                    }
-                };
-                branch.sendSMS(phone, linkData, options, callback);
-                form.phone.value = "";
+        // Branch init
+        branch.init('key_live_ceuB4pObor3wq1wTBhZUmjkpvugz1swD', function(err, data) {
+          console.log(err, data); 
+        });
+
+        // Branch methods
+        var linkData = {
+          campaign: 'content 123',
+          channel: 'facebook',
+          feature: 'dashboard',
+          stage: 'new user',
+          tags: [ 'tag1', 'tag2', 'tag3' ],
+          alias: '',
+          data: {
+            'custom_bool': true,
+            'custom_int': Date.now(),
+            'custom_string': 'hello',
+            '$og_title': 'Title',
+            '$og_description': 'Description',
+            '$og_image_url':'http://lorempixel.com/400/400'
+          }
+        };
+
+
+        // Journeys
+        branch.setBranchViewData(linkData);
+
+        // Create/share deep link
+        branch.link(linkData, function(err, link) {
+          // bind elements
+          document.getElementById('button').onclick = function() {
+            window.open(link || err);
+          };
+          document.getElementById('anchor').href = link || err;
+        });
+
+//Brian: 6265606949
+
+        // Send SMS
+        function linkSMS (form){
+          var phone = form.phone.value;
+          branch.sendSMS(phone, linkData, function(err, data){
+            if (err) {
+              alert("Sorry, something went wrong.");
+              console.log(err);
+            } else {
+              alert("SMS sent!");
             }
+          });
+          form.phone.value = "";
+        }
+
+        
+        // Track users
+        branch.setIdentity('123456');
+
     </script> 
 	<title>JC Blog App</title>
 	
-<script type="text/javascript" src="https://zingtree.com/js/iframeResizerSmart.js"></script>
-<script type="text/javascript">iFrameResize();</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<link rel="icon" type="image/png" href="/img/favicon.png">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -44,14 +77,6 @@
 
 </head>
 <body>
-		<div>
-		 **Send SMS
-        <form onsubmit="linkSMS(this); return false;">
-            <input id="phone" name="phone" type="tel" placeholder="(650) 123-4567" />
-          
-            <input type="submit"/>
-        </form>
-        </div>
 
 		<nav class="navbar navbar-default">
 		<div class="container-fluid">
