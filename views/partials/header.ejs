@@ -8,22 +8,17 @@
         (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode banner closeBanner creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode".split(" "), 0);
 
         // Branch init
-        branch.init('key_live_ceuB4pObor3wq1wTBhZUmjkpvugz1swD', function(err, data) {
+        branch.init('key_live_klyCOY1F1OSRM8IYBlLKDgjaBufdj675', function(err, data) {
           console.log(err, data); 
         });
 
         // Branch methods
         var linkData = {
           campaign: 'content 123',
-          channel: 'facebook',
-          feature: 'dashboard',
-          stage: 'new user',
-          tags: [ 'tag1', 'tag2', 'tag3' ],
           alias: '',
           data: {
-            'custom_bool': true,
             'custom_int': Date.now(),
-            'custom_string': 'hello',
+            'custom_string': 'Heya',
             '$og_title': 'Title',
             '$og_description': 'Description',
             '$og_image_url':'http://lorempixel.com/400/400'
@@ -40,7 +35,6 @@
           document.getElementById('button').onclick = function() {
             window.open(link || err);
           };
-          document.getElementById('anchor').href = link || err;
         });
 
 //Brian: 6265606949
@@ -79,6 +73,7 @@
 <body>
 
 		<nav class="navbar navbar-default">
+      <div class="branch-journeys-top"></div>
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="/">Jackie Choi</a>
